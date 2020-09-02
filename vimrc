@@ -71,8 +71,6 @@ set guioptions-=R
 set guioptions-=l
 set guioptions-=L
 
-"TODO statusline
-
 " Relative line number
 set number relativenumber
 augroup numbertoggle
@@ -93,21 +91,11 @@ map <leader>cd :cd %:p:h<cr>:pwd<cr>
 set spelllang=en_gb
 map <leader>s :setlocal spell!<cr>
 
-" Functions
+" Reindent file
+map <leader>= gg=G<C-o><C-o>
+
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" Delete trailing white space on save
-fun! CleanExtraSpaces()
-    let save_cursor = getpos(".")
-    let old_query = getreg('/')
-    silent! %s/\s\+$//e
-    call setpos('.', save_cursor)
-    call setreg('/', old_query)
-endfun
-
-autocmd BufWritePre *.txt,*.js,,*.wiki,*.sh :call CleanExtraSpaces()
-
 
 " Manage plugins with Plug
 " Bootstrap Plug if not already installed
@@ -129,4 +117,22 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
-autocmd BufWritePre *.py execute ':Black'
+let g:rustfmt_autosave = 1
+
+augroup formatting
+    autocmd!
+    autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown wrap spell
+    autocmd BufNewFile,BufFilePre,BufRead *.py,.rs setlocal sw=4 ts=4
+    autocmd BufNewFile,BufFilePre,BufRead *.json,*.js,*.ts,*.html,*.css setlocal sw=2 ts=2 nowrap conceallevel=0 fdm=syntax 
+    autocmd BufWritePre *.py execute ':Black'
+    autocmd BufWritePre *.txt,*.js,*.wiki,*.sh :call CleanExtraSpaces()
+augroup END
+
+" Delete trailing white space on save
+fun! CleanExtraSpaces()
+    let save_cursor = getpos(".")
+    let old_query = getreg('/')
+    silent! %s/\s\+$//e
+    call setpos('.', save_cursor)
+    call setreg('/', old_query)
+endfun
