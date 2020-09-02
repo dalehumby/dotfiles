@@ -108,7 +108,34 @@ fun! CleanExtraSpaces()
     call setreg('/', old_query)
 endfun
 
-if has("autocmd")
-    autocmd BufWritePre *.txt,*.js,*.py,*.wiki,*.sh :call CleanExtraSpaces()
+autocmd BufWritePre *.txt,*.js,,*.wiki,*.sh :call CleanExtraSpaces()
+
+
+" Manage plagins with Plug
+" Bootstrap Plug if not already installed
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
+call plug#begin('~/.vim/plugged')
+
+Plug 'vim-syntastic/syntastic'
+Plug 'rust-lang/rust.vim'
+Plug 'psf/black', { 'branch': 'stable' }
+
+call plug#end()
+
+" Syntastic
+"set statusline+=%#warningmsg#
+"set statusline+=%{SyntasticStatuslineFlag()}
+"set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:syntastic_python_python_exec = 'python3'
+let g:syntastic_python_checkers = ['flake8']
+autocmd BufWritePre *.py execute ':Black'
