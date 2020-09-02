@@ -39,11 +39,10 @@ filetype plugin on
 filetype indent on
 
 " File search
-set wildmenu                    "Turn on autocompletion
+set wildmenu                    "Filename autocompletion
 set wildignore=*.o,*~,*.pyc,__pycache__/
 set wildignore+=*/.git/*,*/.hg/*,*/.svn/*,*/.DS_Store
 set wildignore+=*.png,*.jpg,*.gif
-
 
 " Search
 " Visual mode pressing * searches for the current selection
@@ -55,8 +54,7 @@ map <silent> <leader><cr> :noh<cr>
 set hlsearch                    "Highlight search results
 set smartcase
 set ignorecase
-set incsearch                   "Make search behave as in modern browsers
-
+set incsearch                   "Incremental search, highlight while typing
 
 " Display
 set background=dark
@@ -78,9 +76,9 @@ set guioptions-=L
 " Relative line number
 set number relativenumber
 augroup numbertoggle
-  autocmd!
-  autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-  autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
+    autocmd!
+    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
+    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
 augroup END
 
 " Display whitespace
@@ -111,15 +109,14 @@ endfun
 autocmd BufWritePre *.txt,*.js,,*.wiki,*.sh :call CleanExtraSpaces()
 
 
-" Manage plagins with Plug
+" Manage plugins with Plug
 " Bootstrap Plug if not already installed
 if empty(glob('~/.vim/autoload/plug.vim'))
-  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 call plug#begin('~/.vim/plugged')
-
 Plug 'vim-syntastic/syntastic'
 Plug 'rust-lang/rust.vim'
 Plug 'psf/black', { 'branch': 'stable' }
@@ -135,7 +132,6 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
 autocmd BufWritePre *.py execute ':Black'
