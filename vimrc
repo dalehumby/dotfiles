@@ -1,4 +1,3 @@
-"NOTE: Reload without restart using :source ~/.vimrc
 scriptencoding utf-8
 
 " General config
@@ -63,7 +62,6 @@ colorscheme desert
 set guifont=IBM\ Plex\ Mono:h14,Monaco:h11,Hack:h12,Source\ Code\ Pro:h15,Menlo:h15
 set ruler                       "Show current position
 set cmdheight=1                 "Height of command bar
-set laststatus=2                "Height of status bar
 set scrolloff=8                 "Start scrolling when we're 8 lines away from margins
 set sidescrolloff=15
 set sidescroll=1
@@ -71,6 +69,18 @@ set guioptions-=r               "Disable scrollbars
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
+
+" Statusline
+set laststatus=2                "Always show status bar
+set statusline=
+set statusline+=\ %f
+set statusline+=%m
+set statusline+=%=
+set statusline+=%#CursorColumn#
+set statusline+=\ %{&fileencoding?&fileencoding:&encoding}
+set statusline+=\ %y
+set statusline+=\ %l:%c
+set statusline+=\ %P
 
 " Display whitespace
 set listchars=eol:¬,tab:»·,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×
