@@ -17,6 +17,7 @@ set lazyredraw                  "Don't redraw while executing macros (good perfo
 set showmatch                   "Show matching brackets when text indicator is over them
 set mat=2                       "How many tenths of a second to blink when matching brackets
 set encoding=utf8               "Standard encoding
+set number relativenumber       "Relative line numbers
 syntax on                       "Turn on syntax highlighting
 
 " Turn off swap file, backup
@@ -70,14 +71,6 @@ set guioptions-=r               "Disable scrollbars
 set guioptions-=R
 set guioptions-=l
 set guioptions-=L
-
-" Relative line number
-set number relativenumber
-augroup numbertoggle
-    autocmd!
-    autocmd BufEnter,FocusGained,InsertLeave * set relativenumber
-    autocmd BufLeave,FocusLost,InsertEnter   * set norelativenumber
-augroup END
 
 " Display whitespace
 set listchars=eol:¬,tab:»·,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×
