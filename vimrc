@@ -108,7 +108,7 @@ call plug#begin('~/.vim/plugged')
 Plug 'vim-syntastic/syntastic'
 Plug 'rust-lang/rust.vim'
 Plug 'psf/black', { 'branch': 'stable' }
-
+Plug 'fisadev/vim-isort'
 call plug#end()
 
 let g:syntastic_always_populate_loc_list = 1
@@ -125,6 +125,7 @@ augroup formatting
     autocmd BufNewFile,BufFilePre,BufRead *.py,.rs setlocal sw=4 ts=4
     autocmd BufNewFile,BufFilePre,BufRead *.json,*.js,*.ts,*.html,*.css setlocal sw=2 ts=2 nowrap conceallevel=0 fdm=syntax 
     autocmd BufWritePre *.py execute ':Black'
+    autocmd BufWritePre *.py execute ':Isort'
     autocmd BufWritePre *.txt,*.js,*.wiki,*.sh :call CleanExtraSpaces()
 augroup END
 
