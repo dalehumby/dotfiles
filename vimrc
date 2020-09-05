@@ -48,8 +48,8 @@ set wildignore+=*.png,*.jpg,*.gif
 " Visual mode pressing * searches for the current selection
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 
-" Disable highlight when <leader><cr> is pressed
-map <silent> <leader><cr> :noh<cr>
+" Disable search highlight
+noremap <silent> <leader><cr> :noh<cr>
 
 set hlsearch                    "Highlight search results
 set smartcase
@@ -82,17 +82,17 @@ augroup END
 " Display whitespace
 set listchars=eol:¬,tab:»·,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×
 " Toggle showing whitespace
-map <leader>w :setlocal list!<cr>
+noremap <leader>w :setlocal list!<cr>
 
 " Switch CWD to the directory of the open buffer
-map <leader>cd :cd %:p:h<cr>:pwd<cr>
+noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
 " Spelling
 set spelllang=en_gb
-map <leader>s :setlocal spell!<cr>
+noremap <leader>s :setlocal spell!<cr>
 
 " Reindent file
-map <leader>= gg=G<C-o><C-o>
+noremap <leader>= gg=G<C-o><C-o>
 
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
