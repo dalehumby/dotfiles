@@ -94,6 +94,10 @@ noremap <leader>s :setlocal spell!<cr>
 " Reindent file
 noremap <leader>= gg=G<C-o><C-o>
 
+" Edit / Reload vimrc
+nnoremap <leader>ev :vsplit $MYVIMRC<cr>
+nnoremap <leader>sv :source $MYVIMRC<cr>
+
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
