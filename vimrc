@@ -114,6 +114,12 @@ vnoremap ˚ :m '<-2<CR>gv=gv
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
+" FZF - Fuzzy find, ripgrep
+noremap <leader>/ :Rg 
+noremap <silent> <C-p> :Files<CR>
+noremap <silent> <C-g> :GFiles<CR>
+noremap <silent> <C-b> :Buffers<CR>
+
 " Manage plugins with Plug
 " Bootstrap Plug if not already installed
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -127,6 +133,8 @@ Plug 'rust-lang/rust.vim'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'fisadev/vim-isort'
 Plug 'tpope/vim-surround'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 call plug#end()
 
 let g:syntastic_always_populate_loc_list = 1
@@ -136,6 +144,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
 let g:rustfmt_autosave = 1
+let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'relative': v:true, 'yoffset': 1.0 } }
 
 augroup formatting
     autocmd!
