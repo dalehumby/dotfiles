@@ -132,7 +132,9 @@ Plug 'vim-syntastic/syntastic'
 Plug 'rust-lang/rust.vim'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'fisadev/vim-isort'
+Plug 'lark-parser/vim-lark-syntax'
 Plug 'tpope/vim-surround'
+Plug 'glench/vim-jinja2-syntax'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 call plug#end()
