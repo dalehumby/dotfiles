@@ -7,7 +7,7 @@ set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=500                 "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
 set showmode                    "Show current mode down the bottom
-set gcr=a:blinkon0              "Disable cursor blink
+set guicursor=a:blinkwait750-blinkon750-blinkoff750
 set visualbell                  "No sounds
 set autoread                    "Reload files changed outside vim
 set hidden                      "Buffers can exist without being in a window
@@ -59,6 +59,7 @@ set incsearch                   "Incremental search, highlight while typing
 " Display
 set background=dark
 colorscheme desert
+
 set guifont=IBM\ Plex\ Mono:h14,Monaco:h11,Hack:h12,Source\ Code\ Pro:h15,Menlo:h15
 set ruler                       "Show current position
 set cmdheight=1                 "Height of command bar
@@ -125,6 +126,7 @@ Plug 'vim-syntastic/syntastic'
 Plug 'rust-lang/rust.vim'
 Plug 'psf/black', { 'branch': 'stable' }
 Plug 'fisadev/vim-isort'
+Plug 'tpope/vim-surround'
 call plug#end()
 
 let g:syntastic_always_populate_loc_list = 1
@@ -142,11 +144,11 @@ augroup formatting
     autocmd BufNewFile,BufFilePre,BufRead *.json,*.js,*.ts,*.html,*.css setlocal sw=2 ts=2 nowrap conceallevel=0 fdm=syntax 
     autocmd BufWritePre *.py execute ':Black'
     autocmd BufWritePre *.py execute ':Isort'
-    autocmd BufWritePre *.txt,*.js,*.wiki,*.sh :call CleanExtraSpaces()
+    autocmd BufWritePre *.txt,*.js,*.py,*.sh :call DeleteTrailingSpaces()
 augroup END
 
 " Delete trailing white space on save
-fun! CleanExtraSpaces()
+fun! DeleteTrailingSpaces()
     let save_cursor = getpos(".")
     let old_query = getreg('/')
     silent! %s/\s\+$//e
