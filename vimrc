@@ -28,9 +28,9 @@ set nowb
 set autoindent
 set smartindent
 set smarttab
-set shiftwidth=4                "How many spaces in a tab
-set softtabstop=4
-set tabstop=4
+set shiftwidth=2                "How many spaces in a tab
+set softtabstop=2
+set tabstop=2
 set expandtab                   "Tabs to spaces
 set wrap                        "Wrap lines
 set linebreak                   "Wrap lines at convenient points
@@ -94,6 +94,9 @@ noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 " Spelling
 set spelllang=en_gb
 noremap <leader>s :setlocal spell!<cr>
+" Fix latest spelling mistake
+imap <c-s> <c-g>u<Esc>[s1z=`]a<c-g>u
+nmap <c-s> [s1z=<c-o>
 
 " Reindent file
 noremap <leader>= gg=G<C-o><C-o>
@@ -116,9 +119,11 @@ au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g
 
 " FZF - Fuzzy find, ripgrep
 noremap <leader>/ :Rg 
-noremap <silent> <C-p> :Files<CR>
+noremap <silent> <C-f> :Files<CR>
 noremap <silent> <C-g> :GFiles<CR>
 noremap <silent> <C-b> :Buffers<CR>
+
+noremap <leader>n :NERDTreeFocus<CR>
 
 " Manage plugins with Plug
 " Bootstrap Plug if not already installed
@@ -137,6 +142,9 @@ Plug 'tpope/vim-surround'
 Plug 'glench/vim-jinja2-syntax'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
+Plug 'vimwiki/vimwiki'
+Plug 'rkulla/pydiction'
+Plug 'preservim/nerdtree'
 call plug#end()
 
 let g:syntastic_always_populate_loc_list = 1
@@ -145,8 +153,13 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:syntastic_python_python_exec = 'python3'
 let g:syntastic_python_checkers = ['flake8']
+let g:vim_isort_python_version = 'python3'
 let g:rustfmt_autosave = 1
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'relative': v:true, 'yoffset': 1.0 } }
+
+let g:vimwiki_list = [{'path': '/Users/dalehumby/My Drive/kb', 'syntax': 'markdown', 'ext': '.md'}]
+
+let g:pydiction_location = '/Users/dalehumby/.vim/plugged/pydiction/complete-dict'
 
 augroup formatting
     autocmd!
