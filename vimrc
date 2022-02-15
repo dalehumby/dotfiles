@@ -2,7 +2,7 @@ scriptencoding utf-8
 
 " General config
 set nocompatible                "Use Vim settings, rather then Vi settings
-let mapleader=","               "Remap leader
+let mapleader="\\"              "Leader
 set backspace=indent,eol,start  "Allow backspace in insert mode
 set history=500                 "Store lots of :cmdline history
 set showcmd                     "Show incomplete cmds down the bottom
