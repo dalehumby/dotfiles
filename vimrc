@@ -180,3 +180,10 @@ fun! DeleteTrailingSpaces()
     call setpos('.', save_cursor)
     call setreg('/', old_query)
 endfun
+
+" Use fzf to find file, c-r inserts relative path filename into current buffer
+func! s:insert_filename(lines)
+  let @@ = fnamemodify(a:lines[0], ":f")
+  normal! p
+endfunc
+let g:fzf_action = { 'ctrl-r': function('s:insert_filename')}
