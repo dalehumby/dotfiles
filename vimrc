@@ -158,9 +158,9 @@ let g:vim_isort_python_version = 'python3'
 let g:rustfmt_autosave = 1
 let g:fzf_layout = { 'window': { 'width': 1, 'height': 0.5, 'relative': v:true, 'yoffset': 1.0 } }
 
-let g:vimwiki_list = [{'path': '/Users/dalehumby/My Drive/kb', 'syntax': 'markdown', 'ext': '.md'}]
+let g:vimwiki_list = [{'path': '/Users/$USER/My Drive/kb', 'syntax': 'markdown', 'ext': '.md'}]
 
-let g:pydiction_location = '/Users/dalehumby/.vim/plugged/pydiction/complete-dict'
+let g:pydiction_location = '/Users/$USER/.vim/plugged/pydiction/complete-dict'
 
 augroup formatting
     autocmd!
