@@ -17,6 +17,7 @@ set showmatch                   "Show matching brackets when text indicator is o
 set mat=2                       "How many tenths of a second to blink when matching brackets
 set encoding=utf8               "Standard encoding
 set number relativenumber       "Relative line numbers
+set nojoinspaces                "Insert only 1 space when joining lines with J
 syntax on                       "Turn on syntax highlighting
 
 " Turn off swap file, backup
