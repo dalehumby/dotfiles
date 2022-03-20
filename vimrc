@@ -50,7 +50,7 @@ set wildignore+=*.png,*.jpg,*.gif
 vnoremap <silent> * :<C-u>call VisualSelection('', '')<CR>/<C-R>=@/<CR><CR>
 
 " Disable search highlight
-noremap <silent> <leader><cr> :noh<cr>
+noremap <silent> <leader><leader> :noh<cr>
 
 set hlsearch                    "Highlight search results
 set smartcase
