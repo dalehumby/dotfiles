@@ -115,6 +115,12 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
+" Navigate through buffers
+nnoremap <silent> [b :bprevious<CR>
+nnoremap <silent> ]b :bnext<CR>
+nnoremap <silent> [B :bfirst<CR>
+nnoremap <silent> ]B :blast<CR>
+
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
@@ -125,6 +131,9 @@ noremap <silent> <C-g> :GFiles<CR>
 noremap <silent> <C-b> :Buffers<CR>
 
 noremap <leader>n :NERDTreeFocus<CR>
+
+" List content of registers
+nnoremap <silent> "" :registers "01234abcde-*./=<CR>
 
 " Manage plugins with Plug
 " Bootstrap Plug if not already installed
@@ -169,7 +178,7 @@ augroup formatting
     autocmd BufNewFile,BufFilePre,BufRead *.md setlocal filetype=markdown wrap spell
     autocmd BufNewFile,BufFilePre,BufRead *.py,.rs setlocal sw=4 ts=4
     autocmd BufNewFile,BufFilePre,BufRead *.json,*.js,*.ts,*.html,*.css setlocal sw=2 ts=2 nowrap conceallevel=0 fdm=syntax 
-    autocmd BufWritePre *.py execute ':Black'
+    autocmd BufWritePre *.py silent execute ':Black'
     autocmd BufWritePre *.py execute ':Isort'
     autocmd BufWritePre *.txt,*.js,*.py,*.sh :call DeleteTrailingSpaces()
 augroup END
