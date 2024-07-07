@@ -198,3 +198,8 @@ func! s:insert_filename(lines)
   normal! p
 endfunc
 let g:fzf_action = { 'ctrl-r': function('s:insert_filename')}
+
+
+" GPT-4o script for task management
+command! -nargs=* T silent execute '!python tasks.py <q-args>' | redraw!
+
