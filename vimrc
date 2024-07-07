@@ -89,6 +89,9 @@ set listchars=eol:¬,tab:»·,space:·,trail:·,precedes:⇠,extends:⇢,nbsp:×
 " Toggle showing whitespace
 noremap <leader>w :setlocal list!<cr>
 
+" List content of registers
+nnoremap <silent> "" :registers "01234abcde-*./=<CR>
+
 " Switch CWD to the directory of the open buffer
 noremap <leader>cd :cd %:p:h<cr>:pwd<cr>
 
@@ -100,8 +103,6 @@ imap <c-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 nmap <c-s> [s1z=<c-o>
 
 " Reindent file
-noremap <leader>= gg=G<C-o><C-o>
-
 " Edit / Reload vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
@@ -121,10 +122,7 @@ nnoremap <silent> ]b :bnext<CR>
 nnoremap <silent> [B :bfirst<CR>
 nnoremap <silent> ]B :blast<CR>
 
-" Return to last edit position when opening files
-au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
-
-" FZF - Fuzzy find, ripgrep
+" Fuzzy find, ripgrep
 noremap <leader>/ :Rg 
 noremap <silent> <C-f> :Files<CR>
 noremap <silent> <C-g> :GFiles<CR>
@@ -132,8 +130,11 @@ noremap <silent> <C-b> :Buffers<CR>
 
 noremap <leader>n :NERDTreeFocus<CR>
 
-" List content of registers
-nnoremap <silent> "" :registers "01234abcde-*./=<CR>
+" Reindent file
+noremap <leader>= gg=G<C-o><C-o>
+
+" Return to last edit position when opening files
+au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
 " Manage plugins with Plug
 " Bootstrap Plug if not already installed
@@ -202,4 +203,3 @@ let g:fzf_action = { 'ctrl-r': function('s:insert_filename')}
 
 " GPT-4o script for task management
 command! -nargs=* T silent execute '!python tasks.py <q-args>' | redraw!
-
