@@ -102,7 +102,6 @@ noremap <leader>s :setlocal spell!<cr>
 imap <c-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 nmap <c-s> [s1z=<c-o>
 
-" Reindent file
 " Edit / Reload vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
 nnoremap <leader>sv :source $MYVIMRC<cr>
