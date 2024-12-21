@@ -104,7 +104,7 @@ nmap <c-s> [s1z=<c-o>
 
 " Edit / Reload vimrc
 nnoremap <leader>ev :vsplit $MYVIMRC<cr>
-nnoremap <leader>sv :source $MYVIMRC<cr>
+nnoremap <leader>rv :source $MYVIMRC<cr>
 
 " Swap lines
 " A+j = ∆ and A+k = ˚ on MacOS
