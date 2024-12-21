@@ -132,6 +132,9 @@ noremap <leader>n :NERDTreeFocus<CR>
 " Reindent file
 noremap <leader>= gg=G<C-o><C-o>
 
+" Save shortcut
+nnoremap <CR><CR> :w<CR>
+
 " Return to last edit position when opening files
 au BufReadPost * if line("'\"") > 1 && line("'\"") <= line("$") | exe "normal! g'\"" | endif
 
