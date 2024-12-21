@@ -115,12 +115,6 @@ inoremap ˚ <Esc>:m .-2<CR>==gi
 vnoremap ∆ :m '>+1<CR>gv=gv
 vnoremap ˚ :m '<-2<CR>gv=gv
 
-" Navigate through buffers
-nnoremap <silent> [b :bprevious<CR>
-nnoremap <silent> ]b :bnext<CR>
-nnoremap <silent> [B :bfirst<CR>
-nnoremap <silent> ]B :blast<CR>
-
 " Fuzzy find, ripgrep
 noremap <leader>/ :Rg 
 noremap <silent> <C-f> :Files<CR>
@@ -201,7 +195,6 @@ func! s:insert_filename(lines)
   normal! p
 endfunc
 let g:fzf_action = { 'ctrl-r': function('s:insert_filename')}
-
 
 " GPT-4o script for task management
 command! -nargs=* T silent execute '!python tasks.py <q-args>' | redraw!
